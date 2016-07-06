@@ -1,0 +1,76 @@
+#
+include < stdio.h > #include < stdlib.h > #include < time.h >
+    main() {
+        printf("Benvenuto nel gioco MASTERMIND\n");
+        srand(time(NULL));
+        int gn1, gn2, gn3, gn4, i, e;
+        int num1 = rand() % 10;
+        int num2 = rand() % 10;
+        int num3 = rand() % 10;
+        int num4 = rand() % 10;
+        do {
+            printf("Primo numero generato: %d%d%d%d", num1, num2, num3, num4);
+            if ((num1 == num2) || (num1 == num3) || (num1 == num4)) {
+                num1 = rand() % 10;
+            }
+            if ((num2 == num1) || (num2 == num3) || (num2 == num4)) {
+                num2 = rand() % 10;
+            }
+            if ((num3 == num1) || (num3 == num2) || (num3 == num4)) {
+                num3 = rand() % 10;
+            }
+            if ((num4 == num1) || (num4 == num2) || (num4 == num3)) {
+                num4 = rand() % 10;
+            }
+            printf("\n\nNumero corretto generato: %d%d%d%d", num1, num2, num3, num4);
+        } while ((num1 == num2) && (num1 == num3) && (num1 == num4) && (num2 == num3) && (num2 == num4) && (num3 == num4));
+        do {
+            i = 0;
+            e = 0;
+            printf("\n\nInserire la prima cifra da indovinare ");
+            scanf("%d", & gn1);
+            printf("\nInserire la seconda cifra da indovinare ");
+            scanf("%d", & gn2);
+            printf("\nInserire la terza cifra da indovinare ");
+            scanf("%d", & gn3);
+            printf("\nInserire la quarta cifra da indovinare ");
+            scanf("%d", & gn4);
+            /*
+		
+            In queste righe controlla quanti numeri sono corretti e se si aggiunge 1 al contatore
+		
+            */
+            if ((gn1 == num1) || (gn1 == num2) || (gn1 == num3) || (gn1 == num4)) {
+                i = i + 1;
+            }
+            if ((gn2 == num1) || (gn2 == num2) || (gn2 == num3) || (gn2 == num4)) {
+                i = i + 1;
+            }
+            if ((gn3 == num1) || (gn3 == num2) || (gn3 == num3) || (gn3 == num4)) {
+                i = i + 1;
+            }
+            if ((gn4 == num1) || (gn4 == num2) || (gn4 == num3) || (gn4 == num4)) {
+                i = i + 1;
+            }
+            /*
+		
+            In queste righe controlla la posizione delle cifre e se sono corrette aggiunge 1 al contatore
+		
+            */
+            if (gn1 == num1) {
+                e = e + 1;
+            }
+            if (gn2 == num2) {
+                e = e + 1;
+            }
+            if (gn3 == num3) {
+                e = e + 1;
+            }
+            if (gn4 == num4) {
+                e = e + 1;
+            }
+            printf("\n\nIl numero di cifre corrette e' %d\n", i);
+            printf("\nIl numero di cifre al posto giusto e' %d\n", e);
+        } while ((e == 4) && (i == 4));
+        printf("\n\nCorretto! Hai vinto! Il numero era: %d%d%d%d", num1, num2, num3, num4);
+    }
